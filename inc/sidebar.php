@@ -6,14 +6,18 @@
             <h4>Blog Search</h4>
         </div>
         <div class="card-body">
-            <div class="input-group">
-                <input type="text" class="form-control">
-                <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
-                                <span class="glyphicon glyphicon-search"></span>
+            <form method="post" action="/cms/search.php">
+                <div class="input-group">
+
+                    <input name="searchQuery" type="text" class="form-control">
+                    <span class="btn-group">
+                            <button name="searchSubmit" class="btn btn-primary" type="submit">
+                                <span class="fa fa-search"></span>
                         </button>
                         </span>
-            </div>
+
+                </div>
+            </form>
         </div>
         <!-- /.input-group -->
     </div>
@@ -56,8 +60,8 @@
                 <div class="col-lg-6">
                     <ul class="list-unstyled">
                         <?php
-                        for ($i=$cnt/2+1;$i<$cnt;$i++){
-                            echo '<li><a href="#">'.$cats[$i]["name"].'</a> </li>';
+                        for ($i = $cnt / 2 + 1; $i < $cnt; $i++) {
+                            echo '<li><a href="#">' . $cats[$i]["name"] . '</a> </li>';
                         }
                         ?>
                     </ul>
