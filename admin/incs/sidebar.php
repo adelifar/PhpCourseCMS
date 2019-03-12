@@ -11,7 +11,7 @@
         </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="category.php">
             <i class="fas fa-fw fa-car-alt"></i>
             <span>Categories</span>
         </a>
@@ -23,7 +23,7 @@
             <span>Comments</span>
         </a>
     </li>
-    <li class="nav-item " >
+    <li class="nav-item dropdown" >
         <a class="nav-link dropdown-toggle" href="#" role="button" id="user-dropdown" aria-expanded="true" data-toggle="dropdown">
             <i class="fas fa-fw fa-user-alt"></i>
             <span>Users</span>

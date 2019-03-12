@@ -53,7 +53,7 @@
 
 <!-- Custom scripts for all pages-->
 <script src="/cms/js/sb-admin.min.js"></script>
-
+<script src="/cms/js/datatables.js"></script>
 <!-- Demo scripts for this page-->
 <!--<script src="js/demo/datatables-demo.js"></script>-->
 <!--<script src="js/demo/chart-area-demo.js"></script>-->

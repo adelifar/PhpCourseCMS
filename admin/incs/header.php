@@ -1,3 +1,7 @@
+<?php
+include_once "../classes/DB.php";
+include_once "../classes/Category_cls.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +19,7 @@
     <link href="/cms/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
     <!-- Page level plugin CSS-->
-    <!--<link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">-->
+    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="/cms/css/sb-admin.css" rel="stylesheet">
