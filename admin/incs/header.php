@@ -1,6 +1,7 @@
 <?php
 include_once "../classes/DB.php";
 include_once "../classes/Category_cls.php";
+include_once "../classes/Post_cls.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
