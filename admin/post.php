@@ -24,6 +24,7 @@
                     if (isset($_GET["type"])) {
                         switch ($_GET["type"]) {
                             case "newpost":
+                                include "incs/newpost.php";
                                 break;
                             case "editpost":
                                 break;

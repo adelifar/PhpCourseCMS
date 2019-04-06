@@ -6,8 +6,8 @@
             <span>Posts</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="post-dropdown">
-            <a href="#" class="dropdown-item">View All Posts</a>
-            <a href="#" class="dropdown-item">Add Post</a>
+            <a href="post.php" class="dropdown-item">View All Posts</a>
+            <a href="post.php?type=newpost" class="dropdown-item">Add Post</a>
         </div>
     </li>
     <li class="nav-item">
