@@ -1,13 +1,13 @@
 <?php
 $postObj = new Post();
-if (isset($_GET["delete"])){
-    $id=$_GET["delete"];
+if (isset($_GET["delete"])) {
+    $id = $_GET["delete"];
     $postObj->deletePost($id);
-    $pageName=$_SERVER["PHP_SELF"];
+    $pageName = $_SERVER["PHP_SELF"];
     header("Location: $pageName");
 }
 $posts = $postObj->getAllPosts();
-
+$catObj = new Category();
 ?>
 <table id="postTable" class="table table-bordered table-hover">
     <thead>
@@ -21,6 +21,7 @@ $posts = $postObj->getAllPosts();
         <th>tags</th>
         <th>Content</th>
         <th>Comment Count</th>
+        <th>Edit</th>
         <th>Delete</th>
     </tr>
     </thead>
@@ -30,7 +31,10 @@ $posts = $postObj->getAllPosts();
         ?>
         <tr>
             <td><?= $post["title"] ?></td>
-            <td><?= $post["category_id"] ?></td>
+            <td><?php
+                $cat = $catObj->getCategory($post["category_id"]);
+                echo $cat[0]["name"];
+                ?></td>
             <td><?= $post["author"] ?></td>
             <td><?= $post["date"] ?></td>
             <td><?= $post["status"] ?></td>
@@ -38,7 +42,8 @@ $posts = $postObj->getAllPosts();
             <td><?= $post["tags"] ?></td>
             <td><?= $post["content"] ?></td>
             <td><?= $post["comment_count"] ?></td>
-            <td><a href="?delete=<?=$post["id"]?>" class="btn btn-danger">Delete</a></td>
+            <td><a href="?type=editpost&pid=<?= $post["id"] ?>" class="btn btn-primary">Edit</a></td>
+            <td><a href="?delete=<?= $post["id"] ?>" class="btn btn-danger">Delete</a></td>
         </tr>
         <?php
     }

@@ -27,6 +27,7 @@
                                 include "incs/newpost.php";
                                 break;
                             case "editpost":
+                                include "incs/editpost.php";
                                 break;
                             default:
                                 include "incs/postTableData.php";
