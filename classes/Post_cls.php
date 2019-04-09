@@ -67,4 +67,13 @@ class Post extends DB
 where  id=$qId";
         $cn->query($query);
     }
+
+    public function getPosts($catid)
+    {
+        $cn=$this->connect();
+        $qCatId=$cn->quote($catid);
+        return $cn->query("select * from posts where category_id=$qCatId")->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
 }

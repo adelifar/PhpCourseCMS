@@ -6,7 +6,12 @@
 include_once "classes/DB.php";
 include_once "classes/Post_cls.php";
 $postObj = new Post();
-$posts = $postObj->getAllPosts();
+if (isset($_GET["catid"])) {
+    $posts = $postObj->getPosts($_GET["catid"]);
+} else {
+    $posts = $postObj->getAllPosts();
+}
+
 
 ?>
     <!-- Page Content -->
@@ -26,7 +31,7 @@ $posts = $postObj->getAllPosts();
             foreach ($posts as $post) {
                 ?>
                 <h2>
-                    <a href="#"><?= $post["title"] ?></a>
+                    <a href="post.php?pid=<?= $post["id"] ?>"><?= $post["title"] ?></a>
                 </h2>
                 <p class="lead">
                     by <a href="index.php"><?= $post["author"] ?></a>
@@ -35,16 +40,15 @@ $posts = $postObj->getAllPosts();
                 <hr>
                 <img class="img-fluid" src="images/<?= $post["image"] ?>" alt="">
                 <hr>
-                <p><?= $post["content"] ?></p>
-                <a class="btn btn-primary" href="#">Read More <span class="fa fa-angle-right"></span></a>
+                <p><?= substr($post["content"], 0, 70) ?></p>
+                <a class="btn btn-primary" href="post.php?pid=<?= $post["id"] ?>">Read More <span
+                            class="fa fa-angle-right"></span></a>
 
                 <hr>
                 <?php
             }
             ?>
             <!-- First Blog Post -->
-
-
 
 
             <!-- Second Blog Post -->

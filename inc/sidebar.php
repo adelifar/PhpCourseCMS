@@ -49,7 +49,7 @@
                         <?php
                         for ($i = 0; $i <= $cnt / 2; $i++) {
                             ?>
-                            <li><a href="#"><?= $cats[$i]["name"] ?></a></li>
+                            <li><a href="index.php?catid=<?= $cats[$i]["id"] ?>"><?= $cats[$i]["name"] ?></a></li>
                             <?php
                         }
                         ?>
@@ -61,7 +61,8 @@
                     <ul class="list-unstyled">
                         <?php
                         for ($i = $cnt / 2 + 1; $i < $cnt; $i++) {
-                            echo '<li><a href="#">' . $cats[$i]["name"] . '</a> </li>';
+                            $href="index.php?catid={$cats[$i]["id"]}";
+                            echo '<li><a href="'.$href.'">' . $cats[$i]["name"] . '</a> </li>';
                         }
                         ?>
                     </ul>
