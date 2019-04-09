@@ -3,10 +3,22 @@
 <?php
 include_once "classes/DB.php";
 include_once "classes/Post_cls.php";
+include_once "classes/Comment_cls.php";
 if (isset($_GET["pid"])) {
     $postObj = new Post();
     $post = $postObj->getPost($_GET["pid"])[0];
 }
+$commentObj = new Comment();
+if (isset($_POST["sendComment"])) {
+    $author = $_POST["author"];
+    $email = $_POST["email"];
+    $content = $_POST["content"];
+    $postId = $_GET["pid"];
+
+    $commentObj->addComment($author, $email, $content, $postId);
+}
+
+$postComments = $commentObj->getPostComments($_GET["pid"]);
 ?>
     <div class="container">
 
@@ -14,10 +26,6 @@ if (isset($_GET["pid"])) {
 
         <!-- Blog Entries Column -->
         <div class="col-md-8">
-
-
-
-
             <h2>
                 <a href="post.php?pid=<?= $post["id"] ?>"><?= $post["title"] ?></a>
             </h2>
@@ -42,21 +50,48 @@ if (isset($_GET["pid"])) {
                 </div>
                 <div class="card-body">
                     <form method="post" action="">
-                        <div class="input-group">
-
-                            <textarea name="commentText" class="form-control"></textarea>
+                        <div class="form-group">
+                            <label>Author:</label>
+                            <input type="text" class="form-control" name="author">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Email:</label>
+                            <input type="email" class="form-control" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="content">Content:</label>
+                            <textarea name="content" class="form-control"></textarea>
                             <span class="btn-group">
 
                         </span>
 
                         </div>
                         <div class="form-group mt-3">
-                            <input type="submit" class="btn btn-lg btn-primary" value="Send Comment">
+                            <input name="sendComment" type="submit" class="btn btn-lg btn-primary" value="Send Comment">
                         </div>
                     </form>
                 </div>
                 <!-- /.input-group -->
             </div>
+            <?php
+            foreach ($postComments as $comment) {
+                ?>
+                <div class="card">
+                    <div class="card-body">
+                        <div>
+                            <span class="font-weight-bolder p-3"><?= $comment["author"] ?></span>
+
+                            <div>
+                                <span class="small"><?= $comment["date"] ?></span><br>
+                                <span class=""><?= $comment["content"] ?></span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <?php
+            }
+            ?>
+
         </div>
 
         <!-- Blog Sidebar Widgets Column -->

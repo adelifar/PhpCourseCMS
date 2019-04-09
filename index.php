@@ -29,6 +29,9 @@ if (isset($_GET["catid"])) {
 
             <?php
             foreach ($posts as $post) {
+                if($post["status"]!="Published"){
+                    continue;
+                }
                 ?>
                 <h2>
                     <a href="post.php?pid=<?= $post["id"] ?>"><?= $post["title"] ?></a>

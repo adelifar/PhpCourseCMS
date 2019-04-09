@@ -13,7 +13,7 @@ $catObj = new Category();
     <thead>
     <tr>
         <th>Title</th>
-        <th>category Id</th>
+        <th>category</th>
         <th>Author</th>
         <th>Date</th>
         <th>Status</th>
