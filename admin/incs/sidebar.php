@@ -28,7 +28,10 @@
             <i class="fas fa-fw fa-user-alt"></i>
             <span>Users</span>
         </a>
-        <div class="dropdown-menu" aria-labelledby="user-dropdown"></div>
+        <div class="dropdown-menu" aria-labelledby="user-dropdown">
+            <a href="user.php" class="dropdown-item">View All Users</a>
+            <a href="user.php?type=newuser" class="dropdown-item">Add User</a>
+        </div>
     </li>
     <li class="nav-item ">
         <a class="nav-link" href="index.php">
