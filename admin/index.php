@@ -18,6 +18,7 @@
           </li>
           <li class="breadcrumb-item active">Admin</li>
         </ol>
+          <h1>Welcome <?=$_SESSION["firstName"]." ".$_SESSION["lastName"]?></h1>
 
         <!-- Icon Cards-->
 

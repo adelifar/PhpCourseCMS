@@ -1,9 +1,16 @@
 <?php
+ob_start();
 include_once "../classes/DB.php";
 include_once "../classes/Category_cls.php";
 include_once "../classes/Post_cls.php";
 include_once "../classes/Comment_cls.php";
-include_once "../classes/User_cls.php"
+include_once "../classes/User_cls.php";
+session_start();
+if (!isset($_SESSION["role"]) || $_SESSION["role"]!="admin"){
+    header("Location: ../");
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

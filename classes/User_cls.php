@@ -53,4 +53,11 @@ class User extends DB
         $query="update users set username=$username, password=$password, first_name=$firstName, last_name=$lastName,email=$email,role=$role where id=$id";
         $cn->query($query);
     }
+
+    public function getUserByUsername($username)
+    {
+        $cn=$this->connect();
+        $username=$cn->quote($username);
+        return $cn->query("select * from users where username=$username")->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

@@ -1,5 +1,24 @@
 <div class="col-md-4">
 
+    <div class="card bg-light mb-4" >
+        <div class="card-header">
+            <h4>Login</h4>
+        </div>
+        <div class="card-body">
+            <form method="post" action="login.php">
+                <input class="form-control mb-1" name="username" placeholder="Username">
+                <div class="input-group">
+
+                    <input name="password" type="password" class="form-control" placeholder="Password">
+                    <button name="loginSubmit" class="btn btn-primary" type="submit">
+                        Login
+                    </button>
+
+                </div>
+            </form>
+        </div>
+        <!-- /.input-group -->
+    </div>
     <!-- Blog Search Well -->
     <div class="card bg-light">
         <div class="card-header">
