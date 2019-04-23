@@ -34,7 +34,7 @@
         </div>
     </li>
     <li class="nav-item ">
-        <a class="nav-link" href="index.php">
+        <a class="nav-link" href="profile.php">
             <i class="fas fa-fw fa-user-alt"></i>
             <span>Profile</span>
         </a>
