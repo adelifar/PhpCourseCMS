@@ -5,6 +5,7 @@ include_once "../classes/Category_cls.php";
 include_once "../classes/Post_cls.php";
 include_once "../classes/Comment_cls.php";
 include_once "../classes/User_cls.php";
+include_once "../classes/Report_cls.php";
 session_start();
 if (!isset($_SESSION["role"]) || $_SESSION["role"]!="admin"){
     header("Location: ../");
@@ -37,3 +38,5 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"]!="admin"){
 </head>
 
 <body id="page-top">
+<script src="/cms/vendor/jquery/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>

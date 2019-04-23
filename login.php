@@ -7,11 +7,11 @@ if (isset($_POST["loginSubmit"])) {
     $password = $_POST["password"];
     $userObj = new User();
     $user = $userObj->getUserByUsername($username);
-    if (count($user) > 0 && ($user[0]["username"] === $username && $user[0]["password"] === $password)) {
+    if (count($user) > 0 && ($user["username"] === $username && $user["password"] === $password)) {
         $_SESSION["username"]=$username;
-        $_SESSION["role"]=$user[0]["role"];
-        $_SESSION["firstName"]=$user[0]["first_name"];
-        $_SESSION["lastName"]=$user[0]["last_name"];
+        $_SESSION["role"]=$user["role"];
+        $_SESSION["firstName"]=$user["first_name"];
+        $_SESSION["lastName"]=$user["last_name"];
         //last name
         //role
         header("Location: admin");

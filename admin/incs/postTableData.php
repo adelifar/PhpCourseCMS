@@ -30,7 +30,7 @@ $catObj = new Category();
     foreach ($posts as $post) {
         ?>
         <tr>
-            <td><?= $post["title"] ?></td>
+            <td><a href="../post.php?pid=<?= $post["id"] ?>"> <?= $post["title"] ?></a></td>
             <td><?php
                 $cat = $catObj->getCategory($post["category_id"]);
                 echo $cat[0]["name"];
