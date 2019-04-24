@@ -49,7 +49,23 @@ if (isset($_POST["submitEditPost"])){
     </div>
     <div class="form-group">
         <label for="title">Status:</label>
-        <input type="text" class="form-control" name="status" id="status" value="<?= $currentPost[0]["status"] ?>">
+        <select name="status" id="status"  class="form-control" required>
+            <?php
+            if ($currentPost[0]["status"]=="Draft"){
+                ?>
+                <option value="Draft" selected>Draft</option>
+                <option value="Published">Published</option>
+            <?php
+            }else{
+               ?>
+                <option value="Draft" >Draft</option>
+                <option value="Published" selected>Published</option>
+            <?php
+            }
+            ?>
+            
+
+        </select>
     </div>
     <img src="../images/<?=$currentPost[0]['image']?>" width="150">
     <div class="form-group">

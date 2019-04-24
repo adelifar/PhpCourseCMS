@@ -74,6 +74,14 @@ where  id=$qId";
         $qCatId=$cn->quote($catid);
         return $cn->query("select * from posts where category_id=$qCatId")->fetchAll(PDO::FETCH_ASSOC);
     }
-
-
+    public function changePostStatus($ar,$status){
+        $joinedAr=join(",",$ar);
+        $query="update posts set status='$status' where id in($joinedAr)";
+        $this->connect()->query($query);
+    }
+    public function deleteBulkPost($ar){
+        $joinedAr=join(",",$ar);
+        $query="delete from posts where id in($joinedAr)";
+        $this->connect()->query($query);
+    }
 }

@@ -41,7 +41,10 @@ if (isset($_POST["submitNewPost"])){
     </div>
     <div class="form-group">
         <label for="title">Status:</label>
-        <input type="text" class="form-control" name="status" id="status">
+        <select name="status" id="status" class="form-control" required>
+            <option value="Draft">Draft</option>
+            <option value="Published">Published</option>
+        </select>
     </div>
     <div class="form-group">
         <label for="image">Image:</label>

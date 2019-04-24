@@ -52,15 +52,15 @@ $postComments = $commentObj->getPostComments($_GET["pid"]);
                     <form method="post" action="">
                         <div class="form-group">
                             <label>Author:</label>
-                            <input type="text" class="form-control" name="author">
+                            <input type="text" class="form-control" name="author" required>
                         </div>
                         <div class="form-group">
                             <label for="">Email:</label>
-                            <input type="email" class="form-control" name="email">
+                            <input type="email" class="form-control" name="email" required>
                         </div>
                         <div class="form-group">
                             <label for="content">Content:</label>
-                            <textarea name="content" class="form-control"></textarea>
+                            <textarea name="content" class="form-control" required></textarea>
                             <span class="btn-group">
 
                         </span>
