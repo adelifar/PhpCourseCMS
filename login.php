@@ -7,7 +7,7 @@ if (isset($_POST["loginSubmit"])) {
     $password = $_POST["password"];
     $userObj = new User();
     $user = $userObj->getUserByUsername($username);
-    if (count($user) > 0 && ($user["username"] === $username && $user["password"] === $password)) {
+    if (count($user) > 0 && ($user["username"] === $username && password_verify($password,$user["password"]))) {
         $_SESSION["username"]=$username;
         $_SESSION["role"]=$user["role"];
         $_SESSION["firstName"]=$user["first_name"];

@@ -17,7 +17,9 @@ class User extends DB
     {
         $cn = $this->connect();
         $username = $cn->quote($username);
-        $password = $cn->quote($password);
+        $ops=["cost"=>11];
+
+        $password = $cn->quote( password_hash($password,PASSWORD_BCRYPT,$ops));
         $firstName = $cn->quote($firstName);
         $lastName = $cn->quote($lastName);
         $email = $cn->quote($email);
@@ -45,7 +47,9 @@ class User extends DB
         $cn = $this->connect();
         $id = $cn->quote($uid);
         $username = $cn->quote($username);
-        $password = $cn->quote($password);
+        $ops=["cost"=>11];
+
+        $password = $cn->quote( password_hash($password,PASSWORD_BCRYPT,$ops));
         $firstName = $cn->quote($firstName);
         $lastName = $cn->quote($lastName);
         $email = $cn->quote($email);
@@ -63,5 +67,15 @@ class User extends DB
             return $all[0];
         } else return null;
 
+    }
+
+    public function registerUser($username, $email, $password)
+    {
+        $cn = $this->connect();
+        $username = $cn->quote($username);
+        $email = $cn->quote($email);
+        $password=$cn->quote($password);
+        $query = "insert into users(username,password,email,role) values ($username,$password,$email,'subscriber')";
+        $cn->query($query);
     }
 }

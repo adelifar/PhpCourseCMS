@@ -1,8 +1,15 @@
 <div class="col-md-4">
 
-    <div class="card bg-light mb-4" >
+    <div class="card bg-light mb-4">
         <div class="card-header">
-            <h4>Login</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Login</h4>
+                </div>
+                <div class="col-md-6">
+                    <a href="register.php" class="btn btn-secondary">Register</a>
+                </div>
+            </div>
         </div>
         <div class="card-body">
             <form method="post" action="login.php">
@@ -80,8 +87,8 @@
                     <ul class="list-unstyled">
                         <?php
                         for ($i = $cnt / 2 + 1; $i < $cnt; $i++) {
-                            $href="index.php?catid={$cats[$i]["id"]}";
-                            echo '<li><a href="'.$href.'">' . $cats[$i]["name"] . '</a> </li>';
+                            $href = "index.php?catid={$cats[$i]["id"]}";
+                            echo '<li><a href="' . $href . '">' . $cats[$i]["name"] . '</a> </li>';
                         }
                         ?>
                     </ul>
