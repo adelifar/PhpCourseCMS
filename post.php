@@ -7,6 +7,7 @@ include_once "classes/Comment_cls.php";
 if (isset($_GET["pid"])) {
     $postObj = new Post();
     $post = $postObj->getPost($_GET["pid"])[0];
+    $postObj->incrementView($_GET["pid"]);
 }
 $commentObj = new Comment();
 if (isset($_POST["sendComment"])) {

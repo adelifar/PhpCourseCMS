@@ -55,7 +55,7 @@ $comments = $commentObj->getAllComments();
                 }
                 ?>
             </td>
-            <td><a href="?delete=<?= $comment["id"] ?>" class="btn btn-danger">Delete</a></td>
+            <td><a onclick="return confirmMessage()" href="?delete=<?= $comment["id"] ?>" class="btn btn-danger">Delete</a></td>
         </tr>
         <?php
     }

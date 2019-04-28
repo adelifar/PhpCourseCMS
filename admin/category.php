@@ -127,7 +127,7 @@ if (isset($_POST["editCategorySubmit"])) {
                             echo '<td>' . $category["id"] . '</td>';
                             echo '<td>' . $category["name"] . '</td>';
                             echo '<td>' . $category["description"] . '</td>';
-                            echo '<td>' . '<a href="?delete=' . $category["id"] . ' " class="btn btn-danger">Delete</a>' . '</td>';
+                            echo '<td>' . '<a onclick="return confirmMessage()" href="?delete=' . $category["id"] . ' " class="btn btn-danger">Delete</a>' . '</td>';
                             echo '<td>' . '<a href="?edit=' . $category["id"] . ' " class="btn btn-warning">Edit</a>' . '</td>';
                             echo "</tr>";
                         }

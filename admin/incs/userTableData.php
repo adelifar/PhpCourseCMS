@@ -35,7 +35,7 @@ $users = $userObj->getAllUsers();
             <td><?= $user["email"] ?></td>
             <td><?= $user["role"] ?></td>
             <td><a href="?type=edituser&uid=<?= $user["id"] ?>" class="btn btn-primary">Edit</a></td>
-            <td><a href="?delete=<?= $user["id"] ?>" class="btn btn-danger">Delete</a></td>
+            <td><a onclick="return confirmMessage()" href="?delete=<?= $user["id"] ?>" class="btn btn-danger">Delete</a></td>
         </tr>
         <?php
     }

@@ -8,7 +8,10 @@ include_once "classes/Post_cls.php";
 $postObj = new Post();
 if (isset($_GET["catid"])) {
     $posts = $postObj->getPosts($_GET["catid"]);
-} else {
+}elseif (isset($_GET["author"])){
+    $posts=$postObj->getPostsByAuthor($_GET["author"]);
+}
+else {
     $posts = $postObj->getAllPosts();
 }
 
@@ -37,7 +40,7 @@ if (isset($_GET["catid"])) {
                     <a href="post.php?pid=<?= $post["id"] ?>"><?= $post["title"] ?></a>
                 </h2>
                 <p class="lead">
-                    by <a href="index.php"><?= $post["author"] ?></a>
+                    by <a href="?author=<?= $post["author"] ?>"><?= $post["author"] ?></a>
                 </p>
                 <p><span class="fa fa-clock"></span> Posted on <?= $post["date"] ?></p>
                 <hr>

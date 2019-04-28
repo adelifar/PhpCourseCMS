@@ -40,3 +40,4 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"]!="admin"){
 <body id="page-top">
 <script src="/cms/vendor/jquery/jquery.min.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/12.1.0/classic/ckeditor.js"></script>

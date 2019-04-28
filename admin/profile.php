@@ -40,7 +40,7 @@
                         </div>
                         <div class="form-group">
                             <label for="Password">Password:</label>
-                            <input type="password" class="form-control" value="value="<?=$user["password"]?>"" name="password" id="Password">
+                            <input type="password" class="form-control"  name="password" id="Password" required>
                         </div>
 
                         <div class="form-group">

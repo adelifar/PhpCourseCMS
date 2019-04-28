@@ -59,6 +59,7 @@ if (isset($_POST['bulkSubmit'])) {
             <th>tags</th>
             <th>Content</th>
             <th>Comment Count</th>
+            <th>View Count</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -81,8 +82,9 @@ if (isset($_POST['bulkSubmit'])) {
                 <td><?= $post["tags"] ?></td>
                 <td><?= $post["content"] ?></td>
                 <td><?= $post["comment_count"] ?></td>
+                <td><?=$post["view_count"]?></td>
                 <td><a href="?type=editpost&pid=<?= $post["id"] ?>" class="btn btn-primary">Edit</a></td>
-                <td><a href="?delete=<?= $post["id"] ?>" class="btn btn-danger">Delete</a></td>
+                <td><a onclick="return confirmMessage()" href="?delete=<?= $post["id"] ?>" class="btn btn-danger">Delete</a></td>
             </tr>
             <?php
         }

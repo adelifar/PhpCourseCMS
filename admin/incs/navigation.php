@@ -15,6 +15,11 @@
         Home Page
     </a>
 </li>
+        <li class="nav-item">
+            <a class="nav-link " href="profile.php" >
+                <?=$_SESSION["firstName"]." ".$_SESSION["lastName"]?>
+            </a>
+        </li>
         <li class="nav-item dropdown no-arrow ">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-user-circle fa-fw"></i>

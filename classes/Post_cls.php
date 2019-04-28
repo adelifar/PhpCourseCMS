@@ -72,7 +72,7 @@ where  id=$qId";
     {
         $cn=$this->connect();
         $qCatId=$cn->quote($catid);
-        return $cn->query("select * from posts where category_id=$qCatId")->fetchAll(PDO::FETCH_ASSOC);
+        return $cn->query("select * from posts where status='published' and category_id=$qCatId")->fetchAll(PDO::FETCH_ASSOC);
     }
     public function changePostStatus($ar,$status){
         $joinedAr=join(",",$ar);
@@ -83,5 +83,18 @@ where  id=$qId";
         $joinedAr=join(",",$ar);
         $query="delete from posts where id in($joinedAr)";
         $this->connect()->query($query);
+    }
+    public function getPostsByAuthor($author){
+        $cn=$this->connect();
+        $author=$cn->quote($author);
+        return $cn->query("select * from posts where status='published' and author=$author")->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function incrementView($pid)
+    {
+        $cn=$this->connect();
+        $pid=$cn->quote($pid);
+        $query="update posts set view_count=view_count+1 where id=$pid";
+        $cn->query($query);
     }
 }

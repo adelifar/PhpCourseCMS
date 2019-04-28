@@ -82,7 +82,7 @@ if (isset($_POST["submitEditPost"])){
     <div class="form-group">
         <label for="title">Content:</label>
         <textarea cols="30" rows="10" class="form-control" name="content"
-                  id="content"><?= $currentPost[0]["content"] ?></textarea>
+                  id="editor"><?= $currentPost[0]["content"] ?></textarea>
     </div>
     <input type="submit" name="submitEditPost" value="Update Post" class="btn btn-lg btn-primary">
 </form>

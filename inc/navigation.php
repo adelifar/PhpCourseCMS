@@ -1,3 +1,4 @@
+
 <!-- Navigation -->
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-md-3">
@@ -26,6 +27,9 @@
                     <a class="nav-link" href="#"><?= $c["name"] ?></a>
                 </li>
                 <?php
+            }
+            if (isset($_SESSION['username']) && $_SESSION["role"]=="admin" && strpos($_SERVER["PHP_SELF"],"post.php")>0){
+                 echo '<li class="nav-item"><a class="nav-link" href="admin/post.php?type=editpost&pid='.$_GET["pid"].'" >Edit post</a></li>';
             }
             ?>
             <li class="nav-item">

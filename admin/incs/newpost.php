@@ -56,7 +56,7 @@ if (isset($_POST["submitNewPost"])){
     </div>
     <div class="form-group">
         <label for="title">Content:</label>
-        <textarea cols="30" rows="10" class="form-control" name="content" id="content"></textarea>
+        <textarea  cols="30" rows="10" class="form-control" name="content" id="editor"></textarea>
     </div>
     <input type="submit" name="submitNewPost" value="Add Post" class="btn btn-lg btn-primary">
 </form>
