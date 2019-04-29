@@ -2,6 +2,7 @@
 <?php include "incs/navigation.php" ?>
 <?php
 $reportObj=new Report();
+
 ?>
 
 <div id="wrapper">

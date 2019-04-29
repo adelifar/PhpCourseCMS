@@ -6,13 +6,33 @@
 include_once "classes/DB.php";
 include_once "classes/Post_cls.php";
 $postObj = new Post();
-if (isset($_GET["catid"])) {
-    $posts = $postObj->getPosts($_GET["catid"]);
-}elseif (isset($_GET["author"])){
-    $posts=$postObj->getPostsByAuthor($_GET["author"]);
+$pageLength = 5;
+$page=1;
+if (isset($_GET["page"])){
+    $page=$_GET["page"];
 }
-else {
-    $posts = $postObj->getAllPosts();
+$queryString='';
+if (isset($_GET["catid"])) {
+    $catid=$_GET["catid"];
+    $queryString="catid={$catid}&";
+    $postCount = $postObj->getAllCatPostCount($_GET["catid"]);
+    $pageCount = ceil($postCount / $pageLength);
+    $posts = $postObj->getCategoryPostsByPage($_GET["catid"],$pageLength,$page);
+
+} elseif (isset($_GET["author"])) {
+    $authorName=$_GET["author"];
+    $queryString="author={$authorName}&";
+    $postCount = $postObj->getAuthorPostCount($_GET["author"]);
+    $pageCount = ceil($postCount / $pageLength);
+//    $posts = $postObj->getPostsByAuthor($_GET["author"]);
+    $posts=$postObj->getAuthorPostsByPage($_GET["author"],$pageLength,$page);
+} else {
+$queryString='';
+    $postCount = $postObj->getAllPostCount();
+    $pageCount = ceil($postCount / $pageLength);
+
+
+    $posts = $postObj->getAllPostsByPage($pageLength,$page);
 }
 
 
@@ -32,7 +52,7 @@ else {
 
             <?php
             foreach ($posts as $post) {
-                if($post["status"]!="Published"){
+                if ($post["status"] != "Published") {
                     continue;
                 }
                 ?>
@@ -54,6 +74,18 @@ else {
                 <?php
             }
             ?>
+            <nav>
+                <ul class="pagination">
+                    <?php
+                    for ($i = 1; $i <= $pageCount; $i++) {
+
+                        ?>
+                        <li class="page-item <?php if ($i==$page) echo "active" ?>"><a href="?<?=$queryString?>page=<?=$i?>" class="page-link "><?=$i?></a></li>
+                        <?php
+                    }
+                    ?>
+                </ul>
+            </nav>
             <!-- First Blog Post -->
 
 
@@ -62,17 +94,16 @@ else {
 
             <!-- Third Blog Post -->
 
-            <hr>
 
             <!-- Pager -->
-            <ul class="">
-                <li class="btn  btn-outline-primary">
-                    <a href="#">&larr; Older</a>
-                </li>
-                <li class="btn float-md-right btn-outline-primary">
-                    <a href="#">Newer &rarr;</a>
-                </li>
-            </ul>
+            <!--            <ul class="">-->
+            <!--                <li class="btn  btn-outline-primary">-->
+            <!--                    <a href="#">&larr; Older</a>-->
+            <!--                </li>-->
+            <!--                <li class="btn float-md-right btn-outline-primary">-->
+            <!--                    <a href="#">Newer &rarr;</a>-->
+            <!--                </li>-->
+            <!--            </ul>-->
 
         </div>
 

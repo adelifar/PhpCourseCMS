@@ -78,4 +78,6 @@ class User extends DB
         $query = "insert into users(username,password,email,role) values ($username,$password,$email,'subscriber')";
         $cn->query($query);
     }
+
+
 }

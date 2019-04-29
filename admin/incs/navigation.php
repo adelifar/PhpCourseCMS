@@ -10,6 +10,14 @@
 
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto  ">
+        <li class="nav-item">
+            <a class="nav-link " href="#" >
+                <?php
+                $onlineUserObj=new OnlineUser();
+                echo "Online users: ".$onlineUserObj->getOnlineUsers();
+                ?>
+            </a>
+        </li>
 <li class="nav-item">
     <a class="nav-link " href="../" >
         Home Page

@@ -8,6 +8,9 @@
 
 class Post extends DB
 {
+    public function getAllPostCount(){
+        return $this->connect()->query("select count(id) as cnt from posts")->fetchAll(PDO::FETCH_ASSOC)[0]["cnt"];
+    }
     public function getAllPosts()
     {
         return $this->connect()->query("select * from posts")->fetchAll(PDO::FETCH_ASSOC);
@@ -96,5 +99,44 @@ where  id=$qId";
         $pid=$cn->quote($pid);
         $query="update posts set view_count=view_count+1 where id=$pid";
         $cn->query($query);
+    }
+
+    public function getAllPostsByPage($pageLength, $page)
+    {
+        //1 0..5
+        //2 5..10
+        //3 10..15
+        $pageLimit=$page*$pageLength-$pageLength;
+        return $this->connect()->query("select * from posts limit $pageLimit,$pageLength")->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAllCatPostCount($catid)
+    {
+        $cn=$this->connect();
+        $qCatId=$cn->quote($catid);
+        return $cn->query("select count(id) as cnt from posts where status='published' and category_id=$qCatId")->fetchAll(PDO::FETCH_ASSOC)[0]["cnt"];
+    }
+
+    public function getCategoryPostsByPage($catid, $pageLength, $page)
+    {
+        $pageLimit=$page*$pageLength-$pageLength;
+        $cn=$this->connect();
+        $qCatId=$cn->quote($catid);
+        return $cn->query("select * from posts   where status='published' and category_id=$qCatId  limit $pageLimit,$pageLength")->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAuthorPostCount($author)
+    {
+        $cn=$this->connect();
+        $author=$cn->quote($author);
+        return $cn->query("select count(id) as cnt from posts where status='published' and author=$author")->fetchAll(PDO::FETCH_ASSOC)[0]["cnt"];
+    }
+
+    public function getAuthorPostsByPage($author, $pageLength, $page)
+    {
+        $pageLimit=$page*$pageLength-$pageLength;
+        $cn=$this->connect();
+        $author=$cn->quote($author);
+        return $cn->query("select * from posts   where status='published' and author=$author  limit $pageLimit,$pageLength")->fetchAll(PDO::FETCH_ASSOC);
     }
 }
