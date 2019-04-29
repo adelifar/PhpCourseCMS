@@ -1,6 +1,6 @@
 <?php
 $postObj = new Post();
-if (isset($_GET["delete"])) {
+if (isset($_GET["delete"]) && isset($_SESSION["role"]) && $_SESSION["role"]=="admin") {
     $id = $_GET["delete"];
     $postObj->deletePost($id);
     $pageName = $_SERVER["PHP_SELF"];
@@ -58,8 +58,8 @@ if (isset($_POST['bulkSubmit'])) {
             <th>Image</th>
             <th>tags</th>
             <th>Content</th>
-            <th>Comment Count</th>
-            <th>View Count</th>
+            <th>Comments</th>
+            <th>Views</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>

@@ -1,7 +1,7 @@
 <?php
 $commentObj = new Comment();
 
-if (isset($_GET["delete"])) {
+if (isset($_GET["delete"])&& isset($_SESSION["role"]) && $_SESSION["role"]=="admin") {
     $id = $_GET["delete"];
     $commentObj->deleteComment($id);
     $pageName = $_SERVER["PHP_SELF"];

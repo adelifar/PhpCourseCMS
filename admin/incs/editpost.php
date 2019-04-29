@@ -8,9 +8,9 @@ if (isset($_POST["submitEditPost"])){
     if (!empty($_FILES["image"]["name"])){
 
         move_uploaded_file($_FILES["image"]["tmp_name"],"../images/{$_FILES["image"]["name"]}");
-        $postObj->updatePost($_POST["id"],$_POST["title"],$_POST["categoryId"],$_POST["author"],$_POST["status"],$_FILES["image"]["name"],$_POST["tags"],$_POST["content"]);
+        $postObj->updatePost($_POST["id"],$_POST["title"],$_POST["categoryId"],$_POST["status"],$_FILES["image"]["name"],$_POST["tags"],$_POST["content"]);
     }else{
-        $postObj->updatePost($_POST["id"],$_POST["title"],$_POST["categoryId"],$_POST["author"],$_POST["status"],$_POST["lastImage"],$_POST["tags"],$_POST["content"]);
+        $postObj->updatePost($_POST["id"],$_POST["title"],$_POST["categoryId"],$_POST["status"],$_POST["lastImage"],$_POST["tags"],$_POST["content"]);
     }
 
 
@@ -43,10 +43,10 @@ if (isset($_POST["submitEditPost"])){
             ?>
         </select>
     </div>
-    <div class="form-group">
-        <label for="author">Author:</label>
-        <input type="text" class="form-control" name="author" id="author" value="<?= $currentPost[0]["author"] ?>">
-    </div>
+<!--    <div class="form-group">-->
+<!--        <label for="author">Author:</label>-->
+<!--        <input type="text" class="form-control" name="author" id="author" value="--><?//= $currentPost[0]["author"] ?><!--">-->
+<!--    </div>-->
     <div class="form-group">
         <label for="title">Status:</label>
         <select name="status" id="status"  class="form-control" required>

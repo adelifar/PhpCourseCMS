@@ -12,6 +12,7 @@ if (isset($_POST["loginSubmit"])) {
         $_SESSION["role"]=$user["role"];
         $_SESSION["firstName"]=$user["first_name"];
         $_SESSION["lastName"]=$user["last_name"];
+        $_SESSION["id"]=$user["id"];
         //last name
         //role
         header("Location: admin");

@@ -4,7 +4,7 @@
 <?php
 $catObj = new Category();
 $categories = $catObj->getAllCategories();
-if (isset($_GET["delete"])) {
+if (isset($_GET["delete"])&& isset($_SESSION["role"]) && $_SESSION["role"]=="admin") {
 
     $deleteId = $_GET["delete"];
     $catObj->deleteCategory($deleteId);

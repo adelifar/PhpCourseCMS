@@ -8,12 +8,18 @@
 
 class Post extends DB
 {
+ public $query="SELECT p.id,category_id,title,concat( u.first_name,' ',u.last_name) 
+as author,date,p.image,content,tags,status,view_count,(SELECT COUNT(id) 
+from comments WHERE comments.post_id=p.id) as comment_count 
+from posts as p
+INNER JOIN users as u on u.id=p.author_id";
     public function getAllPostCount(){
         return $this->connect()->query("select count(id) as cnt from posts")->fetchAll(PDO::FETCH_ASSOC)[0]["cnt"];
     }
     public function getAllPosts()
     {
-        return $this->connect()->query("select * from posts")->fetchAll(PDO::FETCH_ASSOC);
+
+        return $this->connect()->query($this->query)->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function searchPost($searchQuery)
@@ -36,7 +42,7 @@ class Post extends DB
         $qImage = $cn->quote($image);
         $qTags = $cn->quote($tags);
         $qContent = $cn->quote($content);
-        $query = "insert into posts (title,author,category_id,status,image,tags,content,comment_count,date) values ($qTitle,$qAuthor,$qCategoryId,$qStatus,$qImage,$qTags,$qContent,0,now())";
+        $query = "insert into posts (title,author_id,category_id,status,image,tags,content,comment_count,date) values ($qTitle,$qAuthor,$qCategoryId,$qStatus,$qImage,$qTags,$qContent,0,now())";
         $cn->query($query);
     }
 
@@ -51,22 +57,23 @@ class Post extends DB
     public function getPost($id)
     {
         $cn = $this->connect();
-        $query = "select * from posts where  id={$cn->quote($id)}";
+
+        $query = "$this->query where  p.id={$cn->quote($id)}";
         return $cn->query($query)->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function updatePost($id, $title, $categoryId, $author, $status, $image, $tags, $content)
+    public function updatePost($id, $title, $categoryId, $status, $image, $tags, $content)
     {
         $cn = $this->connect();
         $qId = $cn->quote($id);
         $qTitle = $cn->quote($title);
         $qCategoryId = $cn->quote($categoryId);
-        $qAuthor = $cn->quote($author);
+
         $qStatus = $cn->quote($status);
         $qImage = $cn->quote($image);
         $qTags = $cn->quote($tags);
         $qContent = $cn->quote($content);
-        $query = "update posts set title=$qTitle , category_id=$qCategoryId, author=$qAuthor, status=$qStatus , image=$qImage, tags=$qTags, content=$qContent
+        $query = "update posts set title=$qTitle , category_id=$qCategoryId, status=$qStatus , image=$qImage, tags=$qTags, content=$qContent
 where  id=$qId";
         $cn->query($query);
     }
@@ -106,8 +113,9 @@ where  id=$qId";
         //1 0..5
         //2 5..10
         //3 10..15
+
         $pageLimit=$page*$pageLength-$pageLength;
-        return $this->connect()->query("select * from posts limit $pageLimit,$pageLength")->fetchAll(PDO::FETCH_ASSOC);
+        return $this->connect()->query("$this->query limit $pageLimit,$pageLength")->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getAllCatPostCount($catid)
@@ -119,10 +127,11 @@ where  id=$qId";
 
     public function getCategoryPostsByPage($catid, $pageLength, $page)
     {
+
         $pageLimit=$page*$pageLength-$pageLength;
         $cn=$this->connect();
         $qCatId=$cn->quote($catid);
-        return $cn->query("select * from posts   where status='published' and category_id=$qCatId  limit $pageLimit,$pageLength")->fetchAll(PDO::FETCH_ASSOC);
+        return $cn->query("$this->query  where status='published' and category_id=$qCatId  limit $pageLimit,$pageLength")->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getAuthorPostCount($author)
@@ -137,6 +146,6 @@ where  id=$qId";
         $pageLimit=$page*$pageLength-$pageLength;
         $cn=$this->connect();
         $author=$cn->quote($author);
-        return $cn->query("select * from posts   where status='published' and author=$author  limit $pageLimit,$pageLength")->fetchAll(PDO::FETCH_ASSOC);
+        return $cn->query("$this->query   where status='published' and concat( u.first_name,' ',u.last_name)=$author  limit $pageLimit,$pageLength")->fetchAll(PDO::FETCH_ASSOC);
     }
 }
