@@ -8,7 +8,8 @@ include_once "../classes/User_cls.php";
 include_once "../classes/Report_cls.php";
 include_once "../classes/OnlineUser.php";
 session_start();
-if (!isset($_SESSION["role"]) || $_SESSION["role"]!="admin"){
+$userObj=new User();
+if (!isset($_SESSION["role"]) || !$userObj->isAdmin($_SESSION["username"])){
     header("Location: ../");
 }
 

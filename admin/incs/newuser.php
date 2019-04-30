@@ -1,11 +1,21 @@
 <?php
-if (isset($_POST["submitNewUser"])){
-    $userObj=new User();
-    $userObj->addUser($_POST["username"],$_POST["password"],$_POST["firstName"],$_POST["lastName"],$_POST["email"],$_POST["role"]);
-    $pageName=$_SERVER["PHP_SELF"];
-    header("Location: $pageName");
+$userError = '';
+if (isset($_POST["submitNewUser"])) {
+    $userObj = new User();
+
+    try {
+        $userObj->addUser($_POST["username"], $_POST["password"], $_POST["firstName"], $_POST["lastName"], $_POST["email"], $_POST["role"]);
+    } catch (Exception $e) {
+        $userError = "Can not add user check if username or email is not duplicate!!!";
+    }
+    if (!$userError) {
+        $pageName = $_SERVER["PHP_SELF"];
+        header("Location: $pageName");
+    }
 }
+
 ?>
+<span class="alert-danger"><?=$userError?></span>
 <form action="" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="Username">Username:</label>
@@ -31,7 +41,7 @@ if (isset($_POST["submitNewUser"])){
     <div class="form-group">
         <label for="role">Role:</label>
         <select class="form-control" name="role">
-           <option value="subscriber">Subscriber</option>
+            <option value="subscriber">Subscriber</option>
             <option value="admin">Admin</option>
         </select>
     </div>

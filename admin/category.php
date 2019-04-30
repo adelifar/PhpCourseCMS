@@ -4,23 +4,32 @@
 <?php
 $catObj = new Category();
 $categories = $catObj->getAllCategories();
-if (isset($_GET["delete"])&& isset($_SESSION["role"]) && $_SESSION["role"]=="admin") {
+$userObj=new User();
+if (isset($_GET["delete"])&& $userObj->isAdmin($_SESSION["username"])) {
 
     $deleteId = $_GET["delete"];
     $catObj->deleteCategory($deleteId);
     $pageName = $_SERVER["PHP_SELF"];
     header("Location: $pageName");
 }
-
+$catError='';
 if (isset($_POST["addCategorySubmit"])) {
     $name = $_POST["name"];
     $description = $_POST["description"];
     if ($name == "" || empty($name)) {
         $error = "Please Enter name";
     } else {
-        $catObj->addCategory($name, $description);
-        $pageName = $_SERVER["PHP_SELF"];
-        header("Location: $pageName");
+        try {
+            $catObj->addCategory($name, $description);
+        }
+        catch (Exception $e){
+           $catError="can not add category check if name already exists!!!";
+        }
+        if (!$catError){
+            $pageName = $_SERVER["PHP_SELF"];
+            header("Location: $pageName");
+        }
+
     }
 }
 
@@ -39,12 +48,18 @@ if (isset($_POST["editCategorySubmit"])) {
     $updateName=$_POST["name"];
     $updateDescription=$_POST["description"];
     if ($updateName=="" || empty($updateName)){
-        $error="Enter Name of Category";
+        $catError="Enter Name of Category";
     }
     else{
-        $catObj->updateCategory($updateId,$updateName,$updateDescription);
-        $pageName = $_SERVER["PHP_SELF"];
-        header("Location: $pageName");
+        try {
+            $catObj->updateCategory($updateId, $updateName, $updateDescription);
+        }catch (Exception $e){
+            $catError="can not update category check if name already exists!!!";
+        }
+        if (!$catError){
+            $pageName = $_SERVER["PHP_SELF"];
+            header("Location: $pageName");
+        }
     }
 }
 ?>
@@ -64,6 +79,7 @@ if (isset($_POST["editCategorySubmit"])) {
                 </li>
                 <li class="breadcrumb-item active">Category</li>
             </ol>
+            <span class="alert-danger"><?=$catError?></span>
             <div class="row">
                 <div class="col-md-5">
                     <form action="" method="post">

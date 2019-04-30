@@ -1,4 +1,7 @@
 <div class="col-md-4">
+    <?php
+    if(!isset($_SESSION["username"])){
+        ?>
 
     <div class="card bg-light mb-4">
         <div class="card-header">
@@ -26,6 +29,10 @@
         </div>
         <!-- /.input-group -->
     </div>
+    <?php
+    }
+    ?>
+
     <!-- Blog Search Well -->
     <div class="card bg-light">
         <div class="card-header">

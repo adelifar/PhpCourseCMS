@@ -20,8 +20,23 @@ if (isset($_POST["register"])){
     $userObj=new User();
     $ops=["cost"=>11];
     $hash = password_hash($password, PASSWORD_BCRYPT, $ops);
-    $userObj->registerUser($username,$email,$hash);
-    header("Location: index.php");
+    $existUser=$userObj->getUserByUsername($username);
+    if ($existUser){
+        $errorMsg="username already exists! select another one";
+    }
+    else{
+        try {
+            $userObj->registerUser($username, $email, $hash);
+        }
+        catch (Exception $e){
+            $errorMsg="Can not register email is already exists select another email!!";
+        }
+
+    }
+    if (!$errorMsg){
+        header("Location: index.php");
+    }
+
 }
 
 ?>

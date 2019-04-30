@@ -17,9 +17,9 @@ class User extends DB
     {
         $cn = $this->connect();
         $username = $cn->quote($username);
-        $ops=["cost"=>11];
+        $ops = ["cost" => 11];
 
-        $password = $cn->quote( password_hash($password,PASSWORD_BCRYPT,$ops));
+        $password = $cn->quote(password_hash($password, PASSWORD_BCRYPT, $ops));
         $firstName = $cn->quote($firstName);
         $lastName = $cn->quote($lastName);
         $email = $cn->quote($email);
@@ -47,9 +47,9 @@ class User extends DB
         $cn = $this->connect();
         $id = $cn->quote($uid);
         $username = $cn->quote($username);
-        $ops=["cost"=>11];
+        $ops = ["cost" => 11];
 
-        $password = $cn->quote( password_hash($password,PASSWORD_BCRYPT,$ops));
+        $password = $cn->quote(password_hash($password, PASSWORD_BCRYPT, $ops));
         $firstName = $cn->quote($firstName);
         $lastName = $cn->quote($lastName);
         $email = $cn->quote($email);
@@ -74,9 +74,20 @@ class User extends DB
         $cn = $this->connect();
         $username = $cn->quote($username);
         $email = $cn->quote($email);
-        $password=$cn->quote($password);
+        $password = $cn->quote($password);
         $query = "insert into users(username,password,email,role) values ($username,$password,$email,'subscriber')";
         $cn->query($query);
+    }
+    public function isAdmin($username){
+        $cn=$this->connect();
+        $username=$cn->quote($username);
+        $query="select role from users where username=$username";
+        $result=$cn->query($query)->fetchAll(PDO::FETCH_ASSOC);
+        if (count($result)>0){
+            return $result[0]["role"]=="admin";
+        }else return false;
+
+
     }
 
 

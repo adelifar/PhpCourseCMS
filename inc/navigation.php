@@ -23,18 +23,24 @@
             $cats = $cat->getAllCategories();
             foreach ($cats as $c) {
                 ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><?= $c["name"] ?></a>
+                <li class="nav-item <?php if (isset($_GET["catid"]) && $_GET["catid"]==$c["id"]) echo "active"?>">
+                    <a class="nav-link" href="index.php?catid=<?=$c["id"]?>"><?= $c["name"] ?></a>
                 </li>
                 <?php
             }
-            if (isset($_SESSION['username']) && $_SESSION["role"]=="admin" && strpos($_SERVER["PHP_SELF"],"post.php")>0){
+            $userObj=new User();
+            if (isset($_SESSION['username']) && $userObj->isAdmin($_SESSION["username"]) && strpos($_SERVER["PHP_SELF"],"post.php")>0){
                  echo '<li class="nav-item"><a class="nav-link" href="admin/post.php?type=editpost&pid='.$_GET["pid"].'" >Edit post</a></li>';
             }
+            if (isset($_SESSION["username"]) &&  $userObj->isAdmin($_SESSION["username"])) {
+                ?>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="admin">Admin</a>
+                </li>
+                <?php
+            }
             ?>
-            <li class="nav-item">
-                <a class="nav-link" href="admin">Admin</a>
-            </li>
         </ul>
         <!--<span class="navbar-text">-->
         <!--Navbar text with an inline element-->

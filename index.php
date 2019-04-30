@@ -45,12 +45,12 @@ $queryString='';
         <!-- Blog Entries Column -->
         <div class="col-md-8">
 
-            <h1 class="page-header">
-                Page Heading
-                <small>Secondary Text</small>
-            </h1>
+
 
             <?php
+            if (count($posts)<1){
+                echo "<h2>No Post Available</h2>";
+            }
             foreach ($posts as $post) {
                 if ($post["status"] != "Published") {
                     continue;
