@@ -1,0 +1,7 @@
+RewriteEngine on
+
+RewriteRule ^(index|register)$ $1.php [NC,L]
+RewriteRule ^post/(\d+)$ post.php?pid=$1 [NC,L]
+RewriteRule ^index/category/(\d+)$ index.php?catid=$1 [NC,L]
+RewriteRule ^index/author/(.+)$ index.php?author=$1 [NC,L]
+RewriteRule ^index/author/(.+)$/page/(\d+)$ index.php?author=$1&page=$2 [NC,L]

@@ -57,17 +57,17 @@ $queryString='';
                 }
                 ?>
                 <h2>
-                    <a href="post.php?pid=<?= $post["id"] ?>"><?= $post["title"] ?></a>
+                    <a href="/cms/post/<?= $post["id"] ?>"><?= $post["title"] ?></a>
                 </h2>
                 <p class="lead">
-                    by <a href="?author=<?= $post["author"] ?>"><?= $post["author"] ?></a>
+                    by <a href="/cms/index/author/<?= $post["author"] ?>"><?= $post["author"] ?></a>
                 </p>
                 <p><span class="fa fa-clock"></span> Posted on <?= $post["date"] ?></p>
                 <hr>
-                <img class="img-fluid" src="images/<?= $post["image"] ?>" alt="">
+                <img class="img-fluid" src="/cms/images/<?= $post["image"] ?>" alt="">
                 <hr>
                 <p><?= substr($post["content"], 0, 70) ?></p>
-                <a class="btn btn-primary" href="post.php?pid=<?= $post["id"] ?>">Read More <span
+                <a class="btn btn-primary" href="/cms/post/<?= $post["id"] ?>">Read More <span
                             class="fa fa-angle-right"></span></a>
 
                 <hr>
@@ -80,7 +80,7 @@ $queryString='';
                     for ($i = 1; $i <= $pageCount; $i++) {
 
                         ?>
-                        <li class="page-item <?php if ($i==$page) echo "active" ?>"><a href="?<?=$queryString?>page=<?=$i?>" class="page-link "><?=$i?></a></li>
+                        <li class="page-item <?php if ($i==$page) echo "active" ?>"><a href="?page=<?=$i?>" class="page-link "><?=$i?></a></li>
                         <?php
                     }
                     ?>

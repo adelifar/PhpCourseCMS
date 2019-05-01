@@ -10,7 +10,7 @@
                     <h4>Login</h4>
                 </div>
                 <div class="col-md-6">
-                    <a href="register.php" class="btn btn-secondary">Register</a>
+                    <a href="register" class="btn btn-secondary">Register</a>
                 </div>
             </div>
         </div>
@@ -82,7 +82,7 @@
                         <?php
                         for ($i = 0; $i <= $cnt / 2; $i++) {
                             ?>
-                            <li><a href="index.php?catid=<?= $cats[$i]["id"] ?>"><?= $cats[$i]["name"] ?></a></li>
+                            <li><a href="/cms/index/category/<?= $cats[$i]["id"] ?>"><?= $cats[$i]["name"] ?></a></li>
                             <?php
                         }
                         ?>
@@ -94,7 +94,7 @@
                     <ul class="list-unstyled">
                         <?php
                         for ($i = $cnt / 2 + 1; $i < $cnt; $i++) {
-                            $href = "index.php?catid={$cats[$i]["id"]}";
+                            $href = "/cms/index/category/{$cats[$i]["id"]}";
                             echo '<li><a href="' . $href . '">' . $cats[$i]["name"] . '</a> </li>';
                         }
                         ?>

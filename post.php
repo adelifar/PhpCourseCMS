@@ -35,7 +35,7 @@ $postComments = $commentObj->getPostComments($_GET["pid"]);
             </p>
             <p><span class="fa fa-clock"></span> Posted on <?= $post["date"] ?></p>
             <hr>
-            <img class="img-fluid" src="images/<?= $post["image"] ?>" alt="">
+            <img class="img-fluid" src="/cms/images/<?= $post["image"] ?>" alt="">
             <hr>
             <p><?= $post["content"] ?></p>
 
